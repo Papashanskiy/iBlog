@@ -55,3 +55,11 @@
 #form-submit {
     margin-bottom: 20px;
 }
+
+#title-container {
+    padding: 0 35px 0 35px;
+}
+
+#body {
+    padding: 15px;
+}
