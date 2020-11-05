@@ -1,0 +1,25 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}
+  {% if title %}
+    {{ title }}
+  {% else %}
+    Блож
+  {% endif %}
+{% endblock %}
+
+{% block navbar %}
+  {% include 'includes/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-3">
+
+    <!-- Loader -->
+    <div id="loader" style="z-index: 99999; margin-left: -320px; color: white; padding: 50px; background-color: #212529; display: none; position: fixed; top: 40%; left: 50%;">
+    </div>
+    <!-- To show flash messages -->
+
+    {% block app_content %}
+    {% endblock %}
+  </div>
+{% endblock %}

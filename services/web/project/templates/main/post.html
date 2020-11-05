@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+    <div id="post">
+        <div id="body" class="row">
+            <div class="row">
+                <h1 id="title">
+                </h1>
+            </div>
+            <p id="body"></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        let postId = {{ id }};
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/post.js') }}"></script>
+{% endblock scripts %}
