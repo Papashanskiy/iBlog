@@ -1,50 +1,44 @@
-# Dockerizing Flask with Postgres, Gunicorn, and Nginx
+# БЛОЖ
 
-## Want to learn how to build this?
+Моя маленькая личная разработка
 
-Check out the [post](https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx).
+## Запуск
 
-## Want to use this project?
 
-### Development
+## Запуск контейнера в проде
 
-Uses the default Flask development server.
+Перед началом необходимо создать файлы окружения .env.prod и .env.prod.db
 
-1. create env files .env.dev
-1. Update the environment variables in the *docker-compose.yml* and *.env.dev* files.
-1. Build the images and run the containers:
+###.env.prod
+```
+FLASK_APP=project/__init__.py
+FLASK_ENV=production
+DATABASE_URL=postgresql://****:****@db:5432/*****
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+APP_FOLDER=/home/app/web
+SECRET_KEY='******'
+```
 
-    ```sh
-    $ sudo docker-compose up -d --build
-    ```
+###.env.prod.db
+```
+POSTGRES_USER=*****
+POSTGRES_PASSWORD=*****
+POSTGRES_DB=*****
+```
 
-    Test it out at [http://localhost:5000](http://localhost:5000). The "web" folder is mounted into the container and your code changes apply automatically.
+Запуск
+```
+$ sudo docker-compose up -d --build
+```
 
-### Production
+Выключение
+```
+$ sudo docker-compose down
+```
 
-Uses gunicorn + nginx.
-
-1. create env files .env.prod and .env.prod.db.
-1. Build the images and run the containers:
-
-    ```sh
-    $ docker-compose -f docker-compose.prod.yml up -d --build
-    ```
-
-    Test it out at [http://localhost](http://localhost). No mounted folders. To apply changes, the image must be re-built.
-1. Build db
-    ```sh
-    $ sudo docker exec -it construction-of-guts_web_1 python manage.py create_db
-    ```
-1. Create admin user
-    ```shell script
-    $ sudo docker exec -it construction-of-guts_web_1 python manage.py create_admin_user
-    ```
-1. Fill the database tables by clicking on the link 
-    ```http request
-    http://HOSTNAME:PORT/api/protect/fill_tables
-    ```
-1. Fill the Length TU table by clicking on the link 
-    ```http request
-    http://HOSTNAME:PORT/api/protect/fill_length_tu_table
-    ```
+Обязательно посетить для создания базы данных
+```
+ip:port/api/protect/create_db
+```
